@@ -1,0 +1,17 @@
+name: Build Swift Tool
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build Executable
+      run: swift build -c release
+    - name: Run Tool
+      run: .build/release/swift-env-check --verbose
